@@ -279,30 +279,61 @@
             
             <div class="modal-body">
                 <div class="preview-container">
-                    <div class="r1-simulator">
-                        <div class="r1-frame">
-                            <iframe id="previewFrame" src="about:blank"></iframe>
+                    <div class="r1-emulator-controls">
+                        <div class="emulator-card">
+                            <strong>Emulator Controls</strong>
+                            <div class="controls-grid">
+                                <div class="control-group">
+                                    <div class="control-label">Tilt X (-1..1)</div>
+                                    <div class="control-row">
+                                        <input id="emu-tilt-x" class="control-slider" type="range" min="-1" max="1" value="0" step="0.01" />
+                                        <input id="emu-tilt-x-num" class="control-number" type="number" min="-1" max="1" step="0.01" value="0" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="control-label">Tilt Y (-1..1)</div>
+                                    <div class="control-row">
+                                        <input id="emu-tilt-y" class="control-slider" type="range" min="-1" max="1" value="0" step="0.01" />
+                                        <input id="emu-tilt-y-num" class="control-number" type="number" min="-1" max="1" step="0.01" value="0" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="control-label">Tilt Z (-1..1)</div>
+                                    <div class="control-row">
+                                        <input id="emu-tilt-z" class="control-slider" type="range" min="-1" max="1" value="1" step="0.01" />
+                                        <input id="emu-tilt-z-num" class="control-number" type="number" min="-1" max="1" step="0.01" value="1" />
+                                    </div>
+                                </div>
+                                <div class="control-buttons">
+                                    <button id="emu-reset" class="btn btn-secondary" type="button">Reset Tilt (R)</button>
+                                    <button id="emu-sideclick" class="btn btn-secondary" type="button">Side Click (Space)</button>
+                                </div>
+                                <div class="control-buttons">
+                                    <button id="emu-scroll-up" class="btn btn-secondary" type="button">Scroll Up (↑)</button>
+                                    <button id="emu-scroll-down" class="btn btn-secondary" type="button">Scroll Down (↓)</button>
+                                </div>
+                                <div class="control-status">
+                                    <label class="control-label">
+                                        <input id="emu-enabled" type="checkbox" checked />
+                                        Enable Emulator
+                                    </label>
+                                    <span id="emu-status" class="status-text">Active</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="preview-controls">
-                        <h3>R1 Device Simulator</h3>
-                        <p>Preview how your creation will look and behave on the R1 device (240x282px)</p>
-                        
-                        <div class="simulator-controls">
-                            <button id="simulateVoiceBtn" class="btn btn-secondary">
-                                <i class="fas fa-microphone"></i> Voice Command
-                            </button>
-                            <button id="simulateScrollUpBtn" class="btn btn-secondary">
-                                <i class="fas fa-arrow-up"></i> Scroll Up
-                            </button>
-                            <button id="simulateScrollDownBtn" class="btn btn-secondary">
-                                <i class="fas fa-arrow-down"></i> Scroll Down
-                            </button>
-                            <button id="simulateSideBtn" class="btn btn-secondary">
-                                <i class="fas fa-hand-point-right"></i> Side Button
-                            </button>
+                    <div class="r1-simulator">
+                        <div class="r1-viewport" id="r1-viewport">
+                            <div class="r1-statusbar" id="r1-statusbar">
+                                <div class="status-left"><span aria-hidden="true">←</span><span>Back</span></div>
+                                <div class="status-center" id="status-time">00:00</div>
+                                <div class="status-right" id="status-batt">Batt —</div>
+                            </div>
+                            <iframe id="previewFrame" src="about:blank" allow="camera; microphone; clipboard-read; clipboard-write; autoplay"></iframe>
                         </div>
+                        <img id="r1-overlay" class="r1-overlay-img" src="{{ url_for('static', filename='r1.png') }}" alt="R1 Device Overlay" />
+                        <div id="r1-input-panel" class="r1-input-panel" title="Scroll here • Click for Side Button"></div>
                     </div>
                 </div>
             </div>
@@ -327,6 +358,7 @@
     <script src="{{ url_for('static', filename='js/templates.js') }}"></script>
     <script src="{{ url_for('static', filename='js/export.js') }}"></script>
     <script src="{{ url_for('static', filename='js/preview.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/emulator-shim.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

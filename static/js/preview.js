@@ -41,25 +41,57 @@ class CreationPreviewer {
      * Set up simulator controls
      */
     setupSimulatorControls() {
-        const simulateVoiceBtn = document.getElementById('simulateVoiceBtn');
-        const simulateScrollUpBtn = document.getElementById('simulateScrollUpBtn');
-        const simulateScrollDownBtn = document.getElementById('simulateScrollDownBtn');
-        const simulateSideBtn = document.getElementById('simulateSideBtn');
+        // The emulator controls are now handled by emulator-shim.js
+        // We just need to make sure the preview frame is properly integrated
+        this.setupEmulatorIntegration();
+    }
+    
+    /**
+     * Set up emulator integration
+     */
+    setupEmulatorIntegration() {
+        // Update time display
+        this.updateStatusBarTime();
+        setInterval(() => this.updateStatusBarTime(), 30000);
         
-        if (simulateVoiceBtn) {
-            simulateVoiceBtn.addEventListener('click', () => this.simulateVoiceCommand());
+        // Update battery if available
+        this.updateBatteryStatus();
+    }
+    
+    /**
+     * Update status bar time
+     */
+    updateStatusBarTime() {
+        const timeElement = document.getElementById('status-time');
+        if (timeElement) {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            timeElement.textContent = `${hours}:${minutes}`;
         }
-        
-        if (simulateScrollUpBtn) {
-            simulateScrollUpBtn.addEventListener('click', () => this.simulateHardwareEvent('scrollUp'));
-        }
-        
-        if (simulateScrollDownBtn) {
-            simulateScrollDownBtn.addEventListener('click', () => this.simulateHardwareEvent('scrollDown'));
-        }
-        
-        if (simulateSideBtn) {
-            simulateSideBtn.addEventListener('click', () => this.simulateHardwareEvent('sideClick'));
+    }
+    
+    /**
+     * Update battery status
+     */
+    async updateBatteryStatus() {
+        const battElement = document.getElementById('status-batt');
+        if (battElement) {
+            try {
+                if (navigator.getBattery) {
+                    const battery = await navigator.getBattery();
+                    const percent = Math.round(battery.level * 100);
+                    battElement.textContent = `Batt ${percent}%`;
+                    
+                    battery.addEventListener('levelchange', () => {
+                        const newPercent = Math.round(battery.level * 100);
+                        battElement.textContent = `Batt ${newPercent}%`;
+                    });
+                }
+            } catch (error) {
+                // Battery API not supported
+                battElement.textContent = 'Batt —';
+            }
         }
     }
     
@@ -71,6 +103,11 @@ class CreationPreviewer {
         if (modal) {
             modal.classList.add('show');
             document.body.style.overflow = 'hidden';
+            
+            // Initialize emulator controls
+            if (typeof window.initializeEmulatorForPreview === 'function') {
+                window.initializeEmulatorForPreview();
+            }
             
             // Generate preview
             await this.generatePreview();
