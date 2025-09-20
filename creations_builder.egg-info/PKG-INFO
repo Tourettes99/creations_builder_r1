@@ -1,3 +1,39 @@
+Metadata-Version: 2.4
+Name: creations-builder
+Version: 1.0.0
+Summary: Visual programming interface for creating R1 creations using Blockly
+Author-email: R1 Creations Builder <dev@example.com>
+License: MIT
+Project-URL: Homepage, https://github.com/r1-creations/creations-builder
+Project-URL: Repository, https://github.com/r1-creations/creations-builder.git
+Project-URL: Documentation, https://github.com/r1-creations/creations-builder#readme
+Project-URL: Bug Reports, https://github.com/r1-creations/creations-builder/issues
+Keywords: r1,creations,blockly,visual-programming,drag-and-drop
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development :: Code Generators
+Classifier: Topic :: Software Development :: User Interfaces
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: flask>=2.0.0
+Requires-Dist: flask-cors>=3.0.0
+Requires-Dist: jinja2>=3.0.0
+Requires-Dist: click>=8.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+
 # R1 Creations Builder
 
 A visual programming interface for creating R1 creations using drag-and-drop blocks. Build interactive applications for the R1 device without writing code!

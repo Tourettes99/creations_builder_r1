@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creations Builder - Visual R1 Programming</title>
+    
+    <!-- Blockly Core -->
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
+    <script src="https://unpkg.com/blockly/javascript_compressed.js"></script>
+    <script src="https://unpkg.com/blockly/msg/en.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blockly-theme.css') }}">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <h1><i class="fas fa-cubes"></i> Creations Builder</h1>
+                <span class="version">v1.0.0</span>
+            </div>
+            
+            <div class="header-center">
+                <input type="text" id="creationName" class="creation-name-input" 
+                       placeholder="Enter creation name..." value="My R1 Creation">
+            </div>
+            
+            <div class="header-right">
+                <button id="newBtn" class="btn btn-secondary" title="New Creation">
+                    <i class="fas fa-file"></i> New
+                </button>
+                <button id="templatesBtn" class="btn btn-secondary" title="Load Template">
+                    <i class="fas fa-layer-group"></i> Templates
+                </button>
+                <button id="saveBtn" class="btn btn-primary" title="Save Creation">
+                    <i class="fas fa-save"></i> Save
+                </button>
+                <button id="exportBtn" class="btn btn-success" title="Export Creation">
+                    <i class="fas fa-download"></i> Export
+                </button>
+                <button id="previewBtn" class="btn btn-info" title="Preview Creation">
+                    <i class="fas fa-eye"></i> Preview
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h3><i class="fas fa-th-large"></i> Blocks</h3>
+                    <button id="collapseSidebar" class="btn-icon" title="Toggle Sidebar">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                </div>
+                
+                <div class="sidebar-content">
+                    <!-- Block Categories -->
+                    <div class="block-categories">
+                        <div class="category-group">
+                            <h4 class="category-title">
+                                <i class="fas fa-play-circle"></i> Triggers
+                            </h4>
+                            <div class="category-blocks" data-category="triggers">
+                                <!-- Trigger blocks will be loaded here -->
+                            </div>
+                        </div>
+                        
+                        <div class="category-group">
+                            <h4 class="category-title">
+                                <i class="fas fa-bolt"></i> Actions
+                            </h4>
+                            <div class="category-blocks" data-category="actions">
+                                <!-- Action blocks will be loaded here -->
+                            </div>
+                        </div>
+                        
+                        <div class="category-group">
+                            <h4 class="category-title">
+                                <i class="fas fa-brain"></i> Logic
+                            </h4>
+                            <div class="category-blocks" data-category="logic">
+                                <!-- Logic blocks will be loaded here -->
+                            </div>
+                        </div>
+                        
+                        <div class="category-group">
+                            <h4 class="category-title">
+                                <i class="fas fa-calculator"></i> Math
+                            </h4>
+                            <div class="category-blocks" data-category="math">
+                                <!-- Math blocks (built-in) -->
+                            </div>
+                        </div>
+                        
+                        <div class="category-group">
+                            <h4 class="category-title">
+                                <i class="fas fa-font"></i> Text
+                            </h4>
+                            <div class="category-blocks" data-category="text">
+                                <!-- Text blocks (built-in) -->
+                            </div>
+                        </div>
+                        
+                        <div class="category-group">
+                            <h4 class="category-title">
+                                <i class="fas fa-list"></i> Variables
+                            </h4>
+                            <div class="category-blocks" data-category="variables">
+                                <!-- Variable blocks (built-in) -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Blockly Workspace -->
+            <div class="workspace-container">
+                <div class="workspace-header">
+                    <div class="workspace-info">
+                        <span class="workspace-title">Visual Workspace</span>
+                        <span class="workspace-status" id="workspaceStatus">Ready</span>
+                    </div>
+                    
+                    <div class="workspace-controls">
+                        <button id="zoomInBtn" class="btn-icon" title="Zoom In">
+                            <i class="fas fa-search-plus"></i>
+                        </button>
+                        <button id="zoomOutBtn" class="btn-icon" title="Zoom Out">
+                            <i class="fas fa-search-minus"></i>
+                        </button>
+                        <button id="zoomResetBtn" class="btn-icon" title="Reset Zoom">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button id="centerBtn" class="btn-icon" title="Center Workspace">
+                            <i class="fas fa-crosshairs"></i>
+                        </button>
+                        <button id="cleanupBtn" class="btn-icon" title="Clean Up Blocks">
+                            <i class="fas fa-broom"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="blocklyDiv" class="blockly-workspace"></div>
+            </div>
+
+            <!-- Code Preview Panel -->
+            <div class="code-panel" id="codePanel">
+                <div class="code-header">
+                    <h3><i class="fas fa-code"></i> Generated Code</h3>
+                    <div class="code-controls">
+                        <button id="toggleCodeBtn" class="btn-icon" title="Toggle Code Panel">
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="code-content">
+                    <pre id="generatedCode" class="code-display">// Generated JavaScript code will appear here...</pre>
+                </div>
+            </div>
+        </main>
+
+        <!-- Status Bar -->
+        <footer class="status-bar">
+            <div class="status-left">
+                <span id="blockCount">0 blocks</span>
+                <span class="separator">|</span>
+                <span id="connectionStatus">Connected</span>
+            </div>
+            
+            <div class="status-right">
+                <span id="lastSaved">Never saved</span>
+                <span class="separator">|</span>
+                <span>Ready</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Templates Modal -->
+    <div id="templatesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-layer-group"></i> Starter Templates</h2>
+                <button class="modal-close" id="closeTemplatesModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="template-filters">
+                    <button class="filter-btn active" data-category="all">All</button>
+                    <button class="filter-btn" data-category="beginner">Beginner</button>
+                    <button class="filter-btn" data-category="productivity">Productivity</button>
+                    <button class="filter-btn" data-category="sensors">Sensors</button>
+                    <button class="filter-btn" data-category="interaction">Interaction</button>
+                    <button class="filter-btn" data-category="advanced">Advanced</button>
+                </div>
+                
+                <div class="templates-grid" id="templatesGrid">
+                    <!-- Templates will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-download"></i> Export Creation</h2>
+                <button class="modal-close" id="closeExportModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="export-options">
+                    <div class="export-option" data-format="html">
+                        <div class="export-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div class="export-info">
+                            <h3>HTML Bundle</h3>
+                            <p>Complete HTML file ready to deploy on R1 device</p>
+                        </div>
+                        <button class="btn btn-primary export-btn" data-format="html">
+                            Export HTML
+                        </button>
+                    </div>
+                    
+                    <div class="export-option" data-format="json">
+                        <div class="export-icon">
+                            <i class="fas fa-file-code"></i>
+                        </div>
+                        <div class="export-info">
+                            <h3>JSON Data</h3>
+                            <p>Structured data format for importing later</p>
+                        </div>
+                        <button class="btn btn-primary export-btn" data-format="json">
+                            Export JSON
+                        </button>
+                    </div>
+                    
+                    <div class="export-option" data-format="xml">
+                        <div class="export-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="export-info">
+                            <h3>XML Workspace</h3>
+                            <p>Blockly workspace XML for sharing and backup</p>
+                        </div>
+                        <button class="btn btn-primary export-btn" data-format="xml">
+                            Export XML
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal modal-large">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-eye"></i> R1 Creation Preview</h2>
+                <button class="modal-close" id="closePreviewModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="preview-container">
+                    <div class="r1-simulator">
+                        <div class="r1-frame">
+                            <iframe id="previewFrame" src="about:blank"></iframe>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-controls">
+                        <h3>R1 Device Simulator</h3>
+                        <p>Preview how your creation will look and behave on the R1 device (240x282px)</p>
+                        
+                        <div class="simulator-controls">
+                            <button id="simulateVoiceBtn" class="btn btn-secondary">
+                                <i class="fas fa-microphone"></i> Voice Command
+                            </button>
+                            <button id="simulateScrollUpBtn" class="btn btn-secondary">
+                                <i class="fas fa-arrow-up"></i> Scroll Up
+                            </button>
+                            <button id="simulateScrollDownBtn" class="btn btn-secondary">
+                                <i class="fas fa-arrow-down"></i> Scroll Down
+                            </button>
+                            <button id="simulateSideBtn" class="btn btn-secondary">
+                                <i class="fas fa-hand-point-right"></i> Side Button
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Custom Scripts -->
+    <script src="{{ url_for('static', filename='js/blockly-config.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/custom-blocks.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/code-generator.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/templates.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/export.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/preview.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

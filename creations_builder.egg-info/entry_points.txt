@@ -1,0 +1,2 @@
+[console_scripts]
+creations-builder = creations_builder.cli:main

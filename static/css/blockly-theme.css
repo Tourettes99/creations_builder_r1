@@ -1,0 +1,467 @@
+/* Custom Blockly Theme for R1 Creations Builder */
+
+/* Override Blockly default colors to match our theme */
+.blocklyMainBackground {
+    stroke: none !important;
+    fill: #f8f9fa !important;
+}
+
+.blocklyScrollbarBackground {
+    fill: #ffffff !important;
+    stroke: #dee2e6 !important;
+}
+
+.blocklyScrollbarHandle {
+    fill: #6c757d !important;
+}
+
+/* Custom block colors for R1 creation categories */
+
+/* Trigger blocks - Green theme */
+.blocklyBlockBackground[data-category="triggers"] {
+    fill: #28a745 !important;
+}
+
+.blocklyBlockBackground[data-category="triggers"]:hover {
+    fill: #218838 !important;
+}
+
+/* Action blocks - Blue theme */
+.blocklyBlockBackground[data-category="actions"] {
+    fill: #007bff !important;
+}
+
+.blocklyBlockBackground[data-category="actions"]:hover {
+    fill: #0056b3 !important;
+}
+
+/* Logic blocks - Purple theme */
+.blocklyBlockBackground[data-category="logic"] {
+    fill: #6f42c1 !important;
+}
+
+.blocklyBlockBackground[data-category="logic"]:hover {
+    fill: #5a32a3 !important;
+}
+
+/* Math blocks - Orange theme */
+.blocklyBlockBackground[data-category="math"] {
+    fill: #fd7e14 !important;
+}
+
+.blocklyBlockBackground[data-category="math"]:hover {
+    fill: #e8650e !important;
+}
+
+/* Text blocks - Teal theme */
+.blocklyBlockBackground[data-category="text"] {
+    fill: #20c997 !important;
+}
+
+.blocklyBlockBackground[data-category="text"]:hover {
+    fill: #1ba085 !important;
+}
+
+/* Variable blocks - Pink theme */
+.blocklyBlockBackground[data-category="variables"] {
+    fill: #e83e8c !important;
+}
+
+.blocklyBlockBackground[data-category="variables"]:hover {
+    fill: #d91a72 !important;
+}
+
+/* Block text styling */
+.blocklyText {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    fill: #ffffff !important;
+}
+
+.blocklyNonEditableText > .blocklyText {
+    fill: #ffffff !important;
+}
+
+.blocklyEditableText > .blocklyText {
+    fill: #212529 !important;
+}
+
+/* Input field styling */
+.blocklyHtmlInput {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 12px !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 4px !important;
+    padding: 2px 6px !important;
+}
+
+/* Dropdown styling */
+.blocklyDropdownMenu {
+    background: #ffffff !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.blocklyMenuItem {
+    color: #212529 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+}
+
+.blocklyMenuItem:hover {
+    background: #f8f9fa !important;
+    color: #007bff !important;
+}
+
+.blocklyMenuItemHighlight {
+    background: #007bff !important;
+    color: #ffffff !important;
+}
+
+/* Connection indicators */
+.blocklyConnection {
+    stroke: #ffffff !important;
+    stroke-width: 2px !important;
+    fill: none !important;
+}
+
+.blocklyConnectionHighlight {
+    stroke: #ffc107 !important;
+    stroke-width: 3px !important;
+}
+
+/* Block shadows */
+.blocklyBlockBackground {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)) !important;
+}
+
+.blocklySelected > .blocklyBlockBackground {
+    stroke: #ffc107 !important;
+    stroke-width: 3px !important;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2)) !important;
+}
+
+/* Trash can styling */
+.blocklyTrash {
+    opacity: 0.8 !important;
+}
+
+.blocklyTrash:hover {
+    opacity: 1 !important;
+}
+
+/* Toolbox styling */
+.blocklyToolboxDiv {
+    background: #ffffff !important;
+    border-right: 1px solid #dee2e6 !important;
+}
+
+.blocklyTreeRoot {
+    background: #ffffff !important;
+}
+
+.blocklyTreeRow {
+    border-radius: 4px !important;
+    margin: 2px 4px !important;
+    padding: 4px 8px !important;
+}
+
+.blocklyTreeRow:hover {
+    background: #f8f9fa !important;
+}
+
+.blocklyTreeSelected {
+    background: #007bff !important;
+    color: #ffffff !important;
+}
+
+.blocklyTreeLabel {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+}
+
+/* Flyout styling */
+.blocklyFlyoutBackground {
+    fill: #ffffff !important;
+    stroke: #dee2e6 !important;
+    stroke-width: 1px !important;
+}
+
+.blocklyFlyoutLabelText {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    fill: #495057 !important;
+}
+
+/* Scrollbar styling */
+.blocklyScrollbarKnob {
+    fill: #6c757d !important;
+    stroke: none !important;
+}
+
+.blocklyScrollbarKnob:hover {
+    fill: #495057 !important;
+}
+
+/* Grid styling */
+.blocklyGridPattern {
+    stroke: #e9ecef !important;
+    stroke-width: 0.5px !important;
+}
+
+/* Zoom controls */
+.blocklyZoom {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.blocklyZoom > image {
+    opacity: 0.7 !important;
+}
+
+.blocklyZoom > image:hover {
+    opacity: 1 !important;
+}
+
+/* Context menu */
+.blocklyContextMenu {
+    background: #ffffff !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.blocklyMenuItemContent {
+    color: #212529 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 12px !important;
+    padding: 6px 12px !important;
+}
+
+.blocklyMenuItemContent:hover {
+    background: #f8f9fa !important;
+    color: #007bff !important;
+}
+
+/* Disabled blocks */
+.blocklyDisabled > .blocklyBlockBackground {
+    fill: #6c757d !important;
+    opacity: 0.5 !important;
+}
+
+.blocklyDisabled > .blocklyText {
+    fill: #ffffff !important;
+    opacity: 0.7 !important;
+}
+
+/* Comment styling */
+.blocklyComment {
+    background: #fff3cd !important;
+    border: 1px solid #ffeaa7 !important;
+    border-radius: 4px !important;
+    color: #856404 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 11px !important;
+    padding: 4px 8px !important;
+}
+
+/* Warning styling */
+.blocklyWarningBody {
+    background: #f8d7da !important;
+    border: 1px solid #f5c6cb !important;
+    border-radius: 4px !important;
+    color: #721c24 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 11px !important;
+    padding: 4px 8px !important;
+}
+
+/* Mutator styling */
+.blocklyMutatorBackground {
+    fill: #ffffff !important;
+    stroke: #007bff !important;
+    stroke-width: 1px !important;
+}
+
+/* Custom R1-specific block styling */
+.blockly-r1-trigger {
+    fill: #28a745 !important;
+}
+
+.blockly-r1-trigger:hover {
+    fill: #218838 !important;
+}
+
+.blockly-r1-action {
+    fill: #007bff !important;
+}
+
+.blockly-r1-action:hover {
+    fill: #0056b3 !important;
+}
+
+.blockly-r1-sensor {
+    fill: #17a2b8 !important;
+}
+
+.blockly-r1-sensor:hover {
+    fill: #138496 !important;
+}
+
+.blockly-r1-storage {
+    fill: #6f42c1 !important;
+}
+
+.blockly-r1-storage:hover {
+    fill: #5a32a3 !important;
+}
+
+/* Block connection preview */
+.blocklyInsertionMarker > .blocklyBlockBackground {
+    fill: #007bff !important;
+    opacity: 0.3 !important;
+    stroke: #007bff !important;
+    stroke-width: 2px !important;
+}
+
+/* Field styling improvements */
+.blocklyFieldTextInput {
+    background: #ffffff !important;
+    border: 1px solid #ced4da !important;
+    border-radius: 3px !important;
+    color: #495057 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 12px !important;
+    padding: 2px 4px !important;
+}
+
+.blocklyFieldTextInput:focus {
+    border-color: #007bff !important;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25) !important;
+    outline: none !important;
+}
+
+/* Checkbox styling */
+.blocklyCheckbox {
+    fill: #ffffff !important;
+    stroke: #6c757d !important;
+    stroke-width: 1px !important;
+}
+
+.blocklyCheckbox.blocklyCheckboxChecked {
+    fill: #28a745 !important;
+    stroke: #28a745 !important;
+}
+
+/* Number input styling */
+.blocklyFieldNumber {
+    background: #ffffff !important;
+    border: 1px solid #ced4da !important;
+    border-radius: 3px !important;
+    color: #495057 !important;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace !important;
+    font-size: 12px !important;
+    padding: 2px 4px !important;
+    text-align: center !important;
+}
+
+/* Angle field styling */
+.blocklyFieldAngle {
+    cursor: pointer !important;
+}
+
+.blocklyAngleCircle {
+    stroke: #007bff !important;
+    stroke-width: 2px !important;
+    fill: rgba(0, 123, 255, 0.1) !important;
+}
+
+.blocklyAngleLine {
+    stroke: #007bff !important;
+    stroke-width: 2px !important;
+}
+
+/* Color field styling */
+.blocklyFieldColour {
+    border: 2px solid #ffffff !important;
+    border-radius: 3px !important;
+    cursor: pointer !important;
+}
+
+.blocklyFieldColour:hover {
+    border-color: #007bff !important;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .blocklyMainBackground {
+        fill: #2d2d2d !important;
+    }
+    
+    .blocklyToolboxDiv {
+        background: #1e1e1e !important;
+        border-right-color: #404040 !important;
+    }
+    
+    .blocklyTreeRoot {
+        background: #1e1e1e !important;
+    }
+    
+    .blocklyTreeRow:hover {
+        background: #404040 !important;
+    }
+    
+    .blocklyDropdownMenu {
+        background: #1e1e1e !important;
+        border-color: #404040 !important;
+    }
+    
+    .blocklyMenuItem {
+        color: #ffffff !important;
+    }
+    
+    .blocklyMenuItem:hover {
+        background: #404040 !important;
+    }
+    
+    .blocklyFlyoutBackground {
+        fill: #1e1e1e !important;
+        stroke: #404040 !important;
+    }
+    
+    .blocklyFlyoutLabelText {
+        fill: #b0b0b0 !important;
+    }
+    
+    .blocklyContextMenu {
+        background: #1e1e1e !important;
+        border-color: #404040 !important;
+    }
+    
+    .blocklyMenuItemContent {
+        color: #ffffff !important;
+    }
+    
+    .blocklyMenuItemContent:hover {
+        background: #404040 !important;
+    }
+    
+    .blocklyFieldTextInput {
+        background: #404040 !important;
+        border-color: #606060 !important;
+        color: #ffffff !important;
+    }
+    
+    .blocklyFieldNumber {
+        background: #404040 !important;
+        border-color: #606060 !important;
+        color: #ffffff !important;
+    }
+}

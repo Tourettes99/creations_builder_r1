@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "creations-builder"
+version = "1.0.0"
+description = "Visual programming interface for creating R1 creations using Blockly"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "R1 Creations Builder", email = "dev@example.com"},
+]
+keywords = ["r1", "creations", "blockly", "visual-programming", "drag-and-drop"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Software Development :: User Interfaces",
+]
+
+dependencies = [
+    "flask>=2.0.0",
+    "flask-cors>=3.0.0",
+    "jinja2>=3.0.0",
+    "click>=8.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov",
+    "black",
+    "flake8",
+    "mypy",
+]
+
+[project.urls]
+Homepage = "https://github.com/r1-creations/creations-builder"
+Repository = "https://github.com/r1-creations/creations-builder.git"
+Documentation = "https://github.com/r1-creations/creations-builder#readme"
+"Bug Reports" = "https://github.com/r1-creations/creations-builder/issues"
+
+[project.scripts]
+creations-builder = "creations_builder.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["creations_builder*"]
+
+[tool.setuptools.package-data]
+creations_builder = ["templates/*", "static/**/*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
